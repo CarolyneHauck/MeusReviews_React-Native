@@ -1,0 +1,12 @@
+{
+  "name": "Crud",
+  "displayName": "Crud",
+  "expo": {
+    "name": "Crud",
+    "slug": "Crud",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
