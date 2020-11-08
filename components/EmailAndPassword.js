@@ -1,7 +1,7 @@
 //import liraries
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
-import firebase from './firebase';
+import firebase from '../firebase';
 
 
 // create a component
