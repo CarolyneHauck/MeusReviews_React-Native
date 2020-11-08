@@ -1,9 +1,7 @@
 
-import React, { Component, useState } from 'react';
-import { View, Text, StyleSheet, ImageBackground } from 'react-native';
+import React, { Component } from 'react';
+import { View, StyleSheet } from 'react-native';
 import LoginForm from './components/LoginForm';
-import Articles from './components/Articles';
-import BG from './images/bg.png';
 import Loading from './components/Loading'
 import firebase from './firebase';
 import Routes from './components/Routes';
@@ -37,9 +35,8 @@ class App extends Component{
   renderContent = () =>{
     switch(this.state.loggedIn){
       case false:
-        return <ImageBackground style={styles.container} source={BG} >
-                  <LoginForm/>
-               </ImageBackground>
+        return <LoginForm/>
+
 
         
       case true:

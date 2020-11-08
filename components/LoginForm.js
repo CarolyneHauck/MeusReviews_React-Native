@@ -1,21 +1,24 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, ImageBackground } from 'react-native';
 import Logo from './Logo';
 import EmailAndPassword from './EmailAndPassword';
+import BG from '../images/bg.png'
 
 // create a component
 const LoginForm = () => {
     return (
-        <View style={styles.container}>
-            <View style={styles.logoContainer}>
-                <Logo/>
-            </View>
+        <ImageBackground style={styles.container} source={BG} >
+            <View style={styles.container}>
+                <View style={styles.logoContainer}>
+                    <Logo/>
+                </View>
 
-            <View style={styles.emailAndPassword}>
-                <EmailAndPassword/>
+                <View style={styles.emailAndPassword}>
+                    <EmailAndPassword/>
+                </View>
             </View>
-        </View>
+        </ImageBackground>
     );
 };
 

@@ -1,10 +1,11 @@
 import Blogs from './Blogs';
 import Novo from './Novo';
 import Edit from './Edit';
+import LoginForm from './LoginForm';
 
 import {createStackNavigator} from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
-import {createAppContainer} from 'react-navigation'
+import {createAppContainer} from 'react-navigation';
 
 
 const Principal =createStackNavigator({
@@ -17,7 +18,7 @@ const Principal =createStackNavigator({
     Edit:{
         screen:Edit,
         navigationOptions:() => ({
-            headerTitle:"Editando Review"
+            headerTitle:"",
         })
     },
 },{
@@ -34,6 +35,12 @@ const BottomTab = createBottomTabNavigator({
             headerTitle:"Novo",
         })
     },
+    Sair:{
+        screen:LoginForm,
+        navigationOptions:() => ({
+            headerTitle:"LoginForm",
+        }),
+    }
 })
 
 export default Routes =createAppContainer(BottomTab)
