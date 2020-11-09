@@ -1,12 +1,11 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableHighlight } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableHighlight, ImageBackground} from 'react-native';
 import {getBlogs, deleteBlog} from '../actions';
 import {connect} from 'react-redux';
 import _ from 'lodash';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import LottieView from 'lottie-react-native';
-import Blogger from '../images/blogger.json';
+import BG from '../images/bg.png';
 
 // create a component
 class Blogs extends Component {
@@ -17,38 +16,32 @@ class Blogs extends Component {
 
 	render() {
 		return (
-			<View style={styles.container}>
+			<ImageBackground style={styles.containerBG} source={BG} >
 				<FlatList style={{width:'100%'}}
 						  data={this.props.listOfBlogs}
 						  keyExtractor={(item) => item.key}
 						  showsVerticalScrollIndicator={false}
 						  renderItem={({item, index}) => {
-							if(index = 0){
-
-							}
-							else{
 								return(
 									<View style={{elevation:8, marginBottom:15,borderRadius:15, backgroundColor:'#575FCF', padding:20}}>
-										  <Text style={{fontSize:28,  fontWeight:'bold', color:'#fff', marginBottom: 15,}} > {item.title}</Text>
-										  <Text style={{fontSize:20, lineHeight:30, color:'#fff'}}>{item.content}</Text>
-										  <View style={{flexDirection:'row', justifyContent:'flex-end', marginTop:25}}>
-										  <TouchableHighlight onPress={() => this.props.navigation.navigate('Edit',{...item})}>
-												  <View style={{marginRight:15}}>
-													  <Icon size={30} color="white" name="edit" />
-												  </View>
-										  </TouchableHighlight>   
-										  <TouchableHighlight onPress={() =>this.props.deleteBlog(item.key)} >
-												  <View>
-													  <Icon size={30} color="white" name="close" />
-												  </View>
-										  </TouchableHighlight>   
-									  </View>
-									  </View>
-								  )
-							}
-						  }}
-				/>
-			</View>
+										<Text style={{fontSize:28,  fontWeight:'bold', color:'#fff', marginBottom: 15,}} > {item.title}</Text>
+										<Text style={{fontSize:20, lineHeight:30, color:'#fff'}}>{item.content}</Text>
+										<View style={{flexDirection:'row', justifyContent:'flex-end', marginTop:25}}>
+										<TouchableHighlight onPress={() => this.props.navigation.navigate('Edit',{...item})}>
+												<View style={{marginRight:15}}>
+													<Icon size={30} color="white" name="edit" />
+												</View>
+										</TouchableHighlight>   
+										<TouchableHighlight onPress={() =>this.props.deleteBlog(item.key)} >
+												<View>
+													<Icon size={30} color="white" name="close" />
+												</View>
+										</TouchableHighlight> 
+									</View>
+								  </View>
+							  		)
+							}}/>
+			</ImageBackground>
 		);
 	}
 }
@@ -61,6 +54,19 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		backgroundColor: '#fff',
 	},
+
+	containerBG: {
+        flex: 1,
+        justifyContent: 'center',
+        padding:30,
+	},
+
+
+	logoContainer:{
+        flex:1,
+        alignItems: 'center',
+        justifyContent:'center'
+    },
 });
 
 function mapStateToProps(state){

@@ -5,6 +5,7 @@ import { TextInput } from 'react-native-paper';
 import {postBlogs} from '../actions';
 import {connect} from 'react-redux';
 import BG from '../images/bg.png';
+import AddLogo from './Add';
 
 // create a component
 class Post extends Component {
@@ -27,6 +28,9 @@ class Post extends Component {
 		return (
 			<ImageBackground style={styles.container} source={BG} >
 				<View style={styles.container}>
+					<View style={styles.logoContainer}>
+						<AddLogo/>
+					</View>
 					<TouchableOpacity>
 						<Text style={styles.titleText}>MEU NOVO REVIEW</Text>
 					</TouchableOpacity>
@@ -44,7 +48,7 @@ class Post extends Component {
 // define your styles
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flex: 4,
         justifyContent: 'center',
         padding:30,
 	},
@@ -65,6 +69,12 @@ const styles = StyleSheet.create({
         borderRadius:5,
         fontSize:15,
 	},
+
+	logoContainer:{
+        flex:1,
+        alignItems: 'center',
+        justifyContent:'center'
+    },
 	
 	inputContent:{
 		backgroundColor:'rgba(255,255,255,.5)',

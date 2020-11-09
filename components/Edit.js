@@ -4,7 +4,8 @@ import { View, Text, StyleSheet, TouchableOpacity, ImageBackground } from 'react
 import { TextInput } from 'react-native-paper';
 import {editBlog} from '../actions';
 import {connect} from 'react-redux';
-import BG from '../images/bg.png'
+import BG from '../images/bg.png';
+import EditLogo from './EditLogo';
 
 // create a component
 class Edit extends Component {
@@ -31,6 +32,9 @@ class Edit extends Component {
 		return (
 			<ImageBackground style={styles.container} source={BG} >
 				<View style={styles.container}>
+					<View style={styles.logoContainer}>
+						<EditLogo/>
+					</View>
 					<TouchableOpacity>
 						<Text style={styles.titleText}>EDITANDO</Text>
 					</TouchableOpacity>
@@ -69,6 +73,12 @@ const styles = StyleSheet.create({
         borderRadius:5,
         fontSize:15,
 	},
+
+	logoContainer:{
+        flex:1,
+        alignItems: 'center',
+        justifyContent:'center'
+    },
 	
 	inputContent:{
 		backgroundColor:'rgba(255,255,255,.5)',

@@ -1,13 +1,13 @@
 //import liraries
 import React, { Component, useRef,useEffect } from 'react';
 import LottieView from 'lottie-react-native';
-import Blogger from '../images/blogger.json';
+import AddLogo from '../images/add.json';
 
-export default class Logo extends React.Component {
+export default class Add extends React.Component {
     componentDidMount() {
       this.animation.play();
       // Or set a specific startFrame and endFrame with:
-      this.animation.play(100, 1000);
+      this.animation.play(30, 120);
     }
   
     render() {
@@ -16,7 +16,7 @@ export default class Logo extends React.Component {
           ref={animation => {
             this.animation = animation;
           }}
-          source={Blogger}
+          source={AddLogo}
         />
       );
     }
