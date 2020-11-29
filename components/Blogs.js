@@ -29,6 +29,11 @@ class Blogs extends Component {
 										<View style={{flexDirection:'row', justifyContent:'flex-end', marginTop:25}}>
 										<TouchableHighlight onPress={() => this.props.navigation.navigate('Edit',{...item})}>
 												<View style={{marginRight:15}}>
+													<Icon size={30} color="white" name="share" />
+												</View>
+										</TouchableHighlight>   
+										<TouchableHighlight onPress={() => this.props.navigation.navigate('Edit',{...item})}>
+												<View style={{marginRight:15}}>
 													<Icon size={30} color="white" name="edit" />
 												</View>
 										</TouchableHighlight>   

@@ -5,10 +5,11 @@ import firebase from '../firebase';
 
 
 // create a component
-class EmailAndPassword extends Component {
+class EmailAndPasswordCreate extends Component {
     constructor(props) {
         super(props);
       }
+
     state={
         email:'',
         password:'',
@@ -17,23 +18,18 @@ class EmailAndPassword extends Component {
     }
 
     onBottomPress = () =>{
-        firebase.auth().signOut().finally(e => {
-            firebase.auth().signInWithEmailAndPassword(this.state.email,this.state.password)
-            .then(this.onLoginSuccess)
-            .catch(err => {
-                this.setState({
-                    error:err.message
-                })
+        firebase.auth().createUserWithEmailAndPassword(this.state.email,this.state.password)
+        .then(e => {firebase.auth().signOut().then(e => this.props.setLogin(true))})
+        .catch(err => {
+            this.setState({
+                error:err.message
             })
         })
 
     }
 
     onLoginSuccess =  () =>{
-        this.setState({
-            error:'',
-            loading:false
-        })
+        this.props.setLogin(true);
     }
 
     render() {
@@ -58,13 +54,10 @@ class EmailAndPassword extends Component {
                 onChangeText={password=> this.setState({password:password})}
                 />
 
-                <Text style={styles.link}
-                    onPress={() => this.props.setLogin(false)}>
-                    Nao tem uma conta ? Cadastre aqui
-                </Text>
+
 
                 <TouchableOpacity style={styles.buttonContainer} onPress={this.onBottomPress} >
-                     <Text style={styles.buttonText}>Login</Text>
+                     <Text style={styles.buttonText}>Cadastrar</Text>
                  </TouchableOpacity>
 
                 <Text style={styles.errorText} >
@@ -85,15 +78,6 @@ const styles = StyleSheet.create({
     input:{
         height:40,
         backgroundColor:'rgba(255,255,255,.5)',
-        paddingLeft:10,
-        marginBottom:15,
-        borderRadius:5,
-        fontSize:15,
-    },
-
-    link:{
-        height:20,
-        color:'#fff',
         paddingLeft:10,
         marginBottom:15,
         borderRadius:5,
@@ -131,4 +115,4 @@ const styles = StyleSheet.create({
 });
 
 //make this component available to the app
-export default EmailAndPassword;
+export default EmailAndPasswordCreate;
