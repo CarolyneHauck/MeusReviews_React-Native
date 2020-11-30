@@ -8,12 +8,15 @@ export function getBlogs() {
                 const blogs = snapshot.val();
                 const result = Object.keys(blogs)
                     .map((key) => {
-                        return { id: key, ...blogs[key] };
-                    })
-                    .filter((e) => e.userId === user.uid);
+                        return { id: key, key: key, ...blogs[key] };
+                    });
+                const myBlogs = result.filter((e) => e.userId === user.uid);
+
+                const myBlogsAllowed = result.filter(e => e.usersAllowed && e.usersAllowed.length > 0 ? e.usersAllowed.includes(user.uid) : false);
+
                 dispatch({
                     type: "BLOGS_FETCH",
-                    payload: result
+                    payload: myBlogs.concat(myBlogsAllowed)
                 })
             })
         }
@@ -27,7 +30,7 @@ export function postBlogs(title, content) {
     return (dispatch) => {
         const user = firebase.auth().currentUser;
         if (user) {
-            const post = { title, content, userId: user.uid, UsersAllowed: [] };
+            const post = { title, content, userId: user.uid, usersAllowed: [] };
             firebase.database().ref('/blogs').push(post)
         }
 

@@ -19,7 +19,12 @@ class EmailAndPasswordCreate extends Component {
 
     onBottomPress = () =>{
         firebase.auth().createUserWithEmailAndPassword(this.state.email,this.state.password)
-        .then(e => {firebase.auth().signOut().then(e => this.props.setLogin(true))})
+        .then(result => {
+            const user = {email:result.user.email, uid:result.user.uid}
+            firebase.database().ref('/users').push(user)
+            firebase.auth()
+                    .signOut()
+                    .then(e => this.props.setLogin(true))})
         .catch(err => {
             this.setState({
                 error:err.message

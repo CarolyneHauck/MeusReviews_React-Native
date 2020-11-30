@@ -1,6 +1,7 @@
 import Blogs from './Blogs';
 import Novo from './Novo';
 import Edit from './Edit';
+import Shared from './Shared';
 import LoginForm from './LoginForm';
 
 import {createStackNavigator} from 'react-navigation-stack';
@@ -17,6 +18,12 @@ const Principal =createStackNavigator({
     },
     Edit:{
         screen:Edit,
+        navigationOptions:() => ({
+            headerTitle:"",
+        })
+    },
+    Shared:{
+        screen:Shared,
         navigationOptions:() => ({
             headerTitle:"",
         })
