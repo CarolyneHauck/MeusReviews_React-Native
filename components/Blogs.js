@@ -26,27 +26,27 @@ class Blogs extends Component {
 					renderItem={({ item, index }) => {
 						return (
 							<View style={{ elevation: 8, marginBottom: 15, borderRadius: 15, 
-										backgroundColor: item.userId === this.user.uid ? '#575FCF' : "#6733FF", padding: 20 }}>
+										backgroundColor: item.userId === this.user.uid ? '#575FCF' : "#41bfb9", padding: 20 }}>
 								<Text style={{ fontSize: 28, fontWeight: 'bold', color: '#fff', marginBottom: 15, }} > {item.title}</Text>
 								<Text style={{ fontSize: 20, lineHeight: 30, color: '#fff' }}>{item.content}</Text>
 								<View style={{ flexDirection: 'row', justifyContent: 'flex-end', marginTop: 25 }}>
+									{item.userId === this.user.uid ? (
 									<TouchableHighlight onPress={() => this.props.navigation.navigate('Shared', { ...item })}>
 										<View style={{ marginRight: 15 }}>
 											<Icon size={30} color="white" name="share" />
 										</View>
-									</TouchableHighlight>
-									{item.userId === this.user.uid ? (
+									</TouchableHighlight>): null}
 									<TouchableHighlight onPress={() => this.props.navigation.navigate('Edit', { ...item })}>
 										<View style={{ marginRight: 15 }}>
 											<Icon size={30} color="white" name="edit" />
 										</View>
-									</TouchableHighlight>): null}
-
+									</TouchableHighlight>
+									{item.userId === this.user.uid ? (
 									<TouchableHighlight onPress={() => this.props.deleteBlog(item.key)} >
 										<View>
 											<Icon size={30} color="white" name="close" />
 										</View>
-									</TouchableHighlight>
+									</TouchableHighlight>): null}
 								</View>
 							</View>
 						)
